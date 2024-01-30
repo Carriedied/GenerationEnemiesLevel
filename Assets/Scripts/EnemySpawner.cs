@@ -4,28 +4,30 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private Rigidbody _enemyPrefab;
     [SerializeField] private Transform[] _spawnPoints;
 
-    private float _spawnTime = 2.0f;
+    private WaitForSeconds _wait;
     private Vector3 _direction;
+    private float _spawnTime = 2.0f;
 
     private void Start()
     {
+        _wait = new WaitForSeconds(_spawnTime);
         StartCoroutine(SpawnEnemies());
     }
 
     private IEnumerator SpawnEnemies()
     {
         Transform spawnPoint;
-        GameObject enemy;
+        Rigidbody enemy;
 
         int minSpawnPointValue = 0;
         float angle;
 
         while (true)
         {
-            yield return new WaitForSeconds(_spawnTime);
+            yield return _wait;
 
             angle = Random.Range(110.0f, 250.0f);
 

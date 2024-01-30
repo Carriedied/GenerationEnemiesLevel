@@ -18,3 +18,4 @@ public class Enemy : MonoBehaviour
         transform.position += _direction * _speed * Time.deltaTime;
     }
 }
+    
