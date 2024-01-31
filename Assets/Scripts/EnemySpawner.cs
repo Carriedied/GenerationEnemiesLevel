@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private Rigidbody _enemyPrefab;
+    [SerializeField] private Enemy _enemyPrefab;
     [SerializeField] private Transform[] _spawnPoints;
 
     private WaitForSeconds _wait;
@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator SpawnEnemies()
     {
         Transform spawnPoint;
-        Rigidbody enemy;
+        Enemy enemy;
 
         int minSpawnPointValue = 0;
         float angle;
@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
 
             enemy = Instantiate(_enemyPrefab, spawnPoint.position, Quaternion.LookRotation(_direction));
 
-            enemy.GetComponent<Enemy>().SetDirection(_direction);
+            enemy.SetDirection(_direction);
         }
     }
 }
