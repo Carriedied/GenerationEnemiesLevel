@@ -7,7 +7,7 @@ public class Target : MonoBehaviour
     [SerializeField] private Transform[] _wayPoints;
     [SerializeField] private int _speed;
 
-    private int currentWaypointIndex = 0;
+    private int _currentWaypointIndex = 0;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -17,7 +17,7 @@ public class Target : MonoBehaviour
         {
             if (collision.transform == _wayPoints[i])
             {
-                currentWaypointIndex = (i + 1) % _wayPoints.Length;
+                _currentWaypointIndex = (i + 1) % _wayPoints.Length;
 
                 isfoundWaypoint = true;
             }
@@ -26,7 +26,7 @@ public class Target : MonoBehaviour
 
     private void Update()
     {
-        Transform targetWaypoint = _wayPoints[currentWaypointIndex];
+        Transform targetWaypoint = _wayPoints[_currentWaypointIndex];
 
         transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, _speed * Time.deltaTime);
     }
